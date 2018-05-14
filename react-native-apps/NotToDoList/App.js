@@ -7,7 +7,20 @@ import {
 
 export default class  App extends Component {
 
-todos = ['First Todo', 'Second Todo', 'Third Todo'];
+todos = [
+  {
+    id: "1",
+    todo: "First Todo"
+  },
+  {
+    id: "2",
+    todo: "Second Todo"
+  },
+  {
+    id: "3",
+    todo: "Third Todo"
+  }
+];
 
   render(){
     return (
@@ -21,13 +34,13 @@ todos = ['First Todo', 'Second Todo', 'Third Todo'];
         <Content>
           <List>
             {this.todos.map((todo) => (
-              <ListItem>
+              <ListItem key={todo.id}>
                 <Left>
                   <CheckBox checked={true} />
                 </Left>
                 <Body>
                   <Text>
-                  {todo}
+                    {todo.todo}
                   </Text>
                 </Body>
                 <Right/>
