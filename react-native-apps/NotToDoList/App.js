@@ -6,6 +6,9 @@ import {
 } from 'native-base';
 
 export default class  App extends Component {
+
+todos = ['First Todo', 'Second Todo', 'Third Todo'];
+
   render(){
     return (
       <Container>
@@ -17,29 +20,19 @@ export default class  App extends Component {
         </Header>
         <Content>
           <List>
-            <ListItem>
-              <Left>
-                <CheckBox checked={false} />
-              </Left>
-              <Body>
-                <Text>
-                  First Item
-                </Text>
-              </Body>
-              <Right/>
-            </ListItem>
-
-            <ListItem>
-              <Left>
-                <CheckBox checked={true} />
-              </Left>
-              <Body>
-                <Text>
-                  Second Item
-                </Text>
-              </Body>
-              <Right/>
-            </ListItem>
+            {this.todos.map((todo) => (
+              <ListItem>
+                <Left>
+                  <CheckBox checked={true} />
+                </Left>
+                <Body>
+                  <Text>
+                  {todo}
+                  </Text>
+                </Body>
+                <Right/>
+              </ListItem>
+            )) }
 
           </List>
         </Content>
