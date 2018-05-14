@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
-import {Container, Content, Text} from 'native-base';
+import {
+  Container, Content, Text,
+  Header, Body, List,
+  ListItem, Left, Right, CheckBox
+} from 'native-base';
 
 export default class  App extends Component {
   render(){
@@ -12,17 +16,40 @@ export default class  App extends Component {
           </Body>
         </Header>
         <Content>
-          <div style={styles.container}>
-          <Text> Hello Native Base!</Text>
-          </div>
+          <List>
+            <ListItem>
+              <Left>
+                <CheckBox checked={false} />
+              </Left>
+              <Body>
+                <Text>
+                  First Item
+                </Text>
+              </Body>
+              <Right/>
+            </ListItem>
+
+            <ListItem>
+              <Left>
+                <CheckBox checked={true} />
+              </Left>
+              <Body>
+                <Text>
+                  Second Item
+                </Text>
+              </Body>
+              <Right/>
+            </ListItem>
+
+          </List>
         </Content>
       </Container>
     );
   }
 }
 
-const styles = StyleSheet.create({
-container: {
-  flex: 1
-},
-})
+// const styles = StyleSheet.create({
+// container: {
+//   flex: 1
+// },
+// })
