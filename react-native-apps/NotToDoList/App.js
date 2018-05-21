@@ -2,33 +2,39 @@ import React, {Component} from 'react';
 import {
   Container, Content, Text,
   Header, Body, List,
-  ListItem, Left, Right, CheckBox
+  ListItem, Left, Right, CheckBox,
+  Fab, Icon
 } from 'native-base';
 import TodoItem from './components/TodoItem';
 import {FlatList} from 'react-native';
 
 export default class  App extends Component {
 
-todos = [
-  {
-    id: "1",
-    todo: "First Todo"
-  },
-  {
-    id: "2",
-    todo: "Second Todo"
-  },
-  {
-    id: "3",
-    todo: "Third Todo"
-  }
-];
+state = {
+  count : 0,
+  todos: []
+
+};
+
+handleIncTodo() {
+  let count = this.state.count + 1;
+  let todos = this.state.todos;
+
+  todos.push ({
+    id: count,
+    todo: "Not To Do #" + count
+  });
+  this.setState ({
+    todos: todos,
+    count: count
+  });
+}
 
 renderRow(todo) {
   return(
     <ListItem key={todo.id}>
       <Left>
-        <CheckBox checked={true} />
+        <CheckBox checked={false} color={green}/>
       </Left>
       <Body>
         <Text>
@@ -45,22 +51,27 @@ _keyExtractor = (item, index) => item.id;
   render(){
     return (
       <Container>
-
         <Header>
           <Body>
-            <Text>Not To Do List</Text>
+            <Text>Not To Do List ({this.state.count})</Text>
           </Body>
         </Header>
         <Content>
           <List>
-            <FlatList
-             data={this.todos}
+            {/* <FlatList
+             data={this.state.todo}
              keyExtractor={this._keyExtractor}
              renderItem={({item}) => <TodoItem todo={item} />}
-           />
-            {/* {this.todos.map((todo)=> <TodoItem todo={todo} key={todo.id} />)} */}
+           /> */}
+           {this.state.todos.map((todo)=> <TodoItem todo={todo} key={todo.id} />)}
           </List>
         </Content>
+        <Fab
+          style={{ backgroundColor: '#5067FF' }}
+          position="bottomRight"
+          onPress={() => this.handleIncTodo() }>
+          <Icon name="add" />
+        </Fab>
       </Container>
     );
   }
